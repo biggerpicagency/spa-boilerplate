@@ -1,0 +1,60 @@
+.breadcrumbs {
+    position: relative;
+    display: block;
+    padding: 0 2rem 0 0;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    background: $color_gray;
+    transition: margin-left 2s ease, padding-left 2s ease;
+
+    $breadcrumbsHeight: 1.8rem;
+
+    li {
+        display: inline-block;
+        position: relative;
+        font-size: .88rem;
+        font-family: $font_sansSerif;
+        font-weight: 300;
+
+        // Separator
+        &:not(:last-child):after {
+            content: ">";
+            display: inline-block;
+            margin-right: .7rem;
+            line-height: $breadcrumbsHeight;
+
+        }
+
+        &:last-child a {
+            color: $color_main;
+        }
+    }
+
+    a {
+        display: inline-block;
+        margin-right: .7rem;
+        line-height: $breadcrumbsHeight;
+        text-transform: uppercase;
+        color: $color_blue;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+    }
+
+    &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1.25rem;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: .9rem 0 .9rem 1.3rem;
+        border-color: transparent transparent transparent $color_gray;
+
+    }
+}

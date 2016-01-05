@@ -1,0 +1,65 @@
+/**
+*
+* Global
+*
+**/
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html,
+body,
+button {
+    -moz-osx-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+html {
+    background-color: #fff;
+}
+
+body {
+    font-family: $font_serif;
+    font-size: 100%;
+    line-height: 1.5;
+    font-weight: 400;
+    color: $color_main;
+}
+
+ul, li {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+
+    &:not(.btn) {
+        color: inherit;
+    }
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}

@@ -1,0 +1,138 @@
+/**
+*
+* List
+*
+**/
+
+// General
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+.list-ol {
+    list-style-type: none;
+}
+
+.list-ul,
+.list-ol {
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+
+    li {
+        padding: 1px 0 1px 0;
+        position: relative;
+        margin-bottom: 2px;
+
+        &:before {
+            position: absolute;
+            overflow: hidden;
+            display: block;
+            content: " ";
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+}
+
+// Unordered list
+.list-ul {
+    padding-left: 30px;
+
+    li {
+        &:before {
+            top: -6px;
+            left: -30px;
+
+            width: 24px;
+            height: 24px;
+
+            content: "•";
+            font-size: 1.6em;
+        }
+    }
+}
+
+// Ordered list
+.list-ol {
+    counter-reset: item;
+    padding-left: 30px;
+
+    li {
+        &:before {
+            left: -30px;
+
+            width: 25px;
+            content: counters(item, ".") ". ";
+            counter-increment: item;
+
+            text-align: center;
+            line-height: 1.5;
+        }
+    }
+}
+
+
+// Other settings
+.list-2-cols,
+.list-3-cols {
+    li {
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.list-2-cols {
+    li {
+        width: 48%;
+
+        &:nth-child(2n) {
+            width: 49%;
+            margin-left: 55px;
+            margin-right: -55px;
+        }
+
+        &:nth-child(2n+1) {
+            clear:both;
+        }
+    }
+
+
+    @media screen and (min-width: 200px) and (max-width: 800px) {
+        li {
+            width: 100%;
+            clear:both;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+    }
+}
+
+.list-chbx {
+    padding-left: 0;
+
+    &__item {
+        position: relative;
+        display: block;
+        padding: 20px 10px 20px 20px;
+        font-size: 14px;
+        color: $color_grey5;
+        letter-spacing: 1px;
+
+        &:not(:first-child) {
+            border-top: 1px solid #e5e5e5;
+        }
+
+    }
+}
+
+.list-spacer {
+    display: inline-block;
+    position: relative;
+    //top: -14px;
+    margin: 0 5px;
+}

@@ -1,0 +1,49 @@
+.fullHero {
+    display: table;
+    width: 100%;
+    height: 100vh;
+    font-size: 1rem; // master size
+
+    &__wrapper {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    &__content {
+        // Enter animation
+        @extend .animated;
+        @extend .fadeOut;
+        animation-duration: 1s;
+
+        // Enter animation
+        .active & {
+            @extend .fadeIn;
+        }
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 9.4em;
+        font-family: $font_sansSerif;
+        font-weight: 700;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: .07em;
+    }
+
+    p {
+        margin: .6em 0 0;
+        font-size: 3.2em;
+        line-height: 1;
+        letter-spacing: 0.02em;
+    }
+
+}
+
+.fullHero,
+.fullHero__wrapper {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+}

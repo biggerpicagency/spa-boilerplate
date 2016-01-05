@@ -1,0 +1,21 @@
+$columns_width_set: (5, 10, 15, 20, 25, 30, 33, 35, 40, 45, 50, 55, 60, 65, 67, 70, 75, 80, 85, 90, 100);
+
+
+@each $width in $columns_width_set {
+    .col-#{$width} {
+        width: $width * 1%;
+
+        @media all and (max-width: 1024px) {
+            width: 100%;
+        }
+    }
+}
+
+
+.col-1-7 {
+    width: 14.2857%;
+}
+
+.col-100 {
+    max-width: 100% !important;
+}

@@ -1,0 +1,565 @@
+/**
+*
+* Button
+*
+**/
+
+
+.btn {
+    @include inline-block();
+    position: relative;
+    margin-right: 5px;
+    padding: 13px 25px;
+
+    border-radius: 24px;
+    font-weight: 400;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 12px;
+    vertical-align: top;
+    cursor: pointer;
+
+    transition: all .6s ease;
+
+    @media all and (min-width: 1025px) and (max-width: 1320px) {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    @media all and (min-width: 200px) and (max-width: 1024px) {
+        margin: 2px 0;
+    }
+
+    &--small {
+        padding: 9px 25px;
+        font-size: 14px;
+        line-height: 14px;
+        text-transform: none;
+        letter-spacing: 1px;
+
+        @media all and (min-width: 1025px) and (max-width: 1320px) {
+            font-size: 12px;
+            line-height: 12px;
+        }
+    }
+
+    &--full-width {
+        display: block;
+    }
+
+
+    /* btn with icon */
+    &--icon {
+        @extend %btn-icon !optional;
+        padding: 13px 47px 13px 25px;
+
+        @media all and (min-width: 1025px) and (max-width: 1320px) {
+            padding: 13px 47px 13px 18px;
+        }
+
+        &:before {
+            position: absolute;
+            content: '';
+
+            z-index: 1;
+            top: 5px;
+            right: 7px;
+
+            width: 29px;
+            height: 100%;
+            height: 29px;
+
+            border-radius: 50%;
+            
+            transition: all .6s linear;
+        }
+
+        &:after {
+            position: absolute;
+            content: '';
+            z-index: 0;
+            top: 5px;
+            right: 7px;
+
+            width: 29px;
+            height: 100%;
+            height: 29px;
+
+            border-radius: 14.5px;
+            
+            transition: all .6s ease;
+        }
+
+        &:hover {
+            &:after {
+                top: 3px;
+                right: 5px;
+                width: 33px;
+                height: 33px;
+                border-radius: 16.5px;
+            }
+        }
+
+        &-settings {
+            &:before {
+                background: url('../img/icons/icon_cog.svg') no-repeat center center;
+            }
+        }
+
+        &-add {
+            &:before {
+                background: url('../img/icons/icon_plus_white.svg') no-repeat center center;
+            }
+        }
+
+        &-save {
+            &:before {
+                background: url('../img/icons/icon_plus_white.svg') no-repeat center center;
+            }
+        }
+
+        &-close {
+            &:before {
+                background: url('../img/icons/icon_close.svg') no-repeat center center;
+            }
+        }
+
+        &-search {
+            &:before {
+                background: url('../img/icons/icon_search.svg') no-repeat center center;
+            }
+        }
+
+        &-arrow-right {
+            &:before {
+                background: url('../img/icons/icon_arrow-right.svg') no-repeat center center;
+            }
+        }
+
+        &-arrow-left {
+            &:before {
+                background: url('../img/icons/icon_arrow-left.svg') no-repeat center center;
+            }
+        }
+
+        &-resize {
+            &:before {
+                background: url('../img/icons/icon_resize.svg') no-repeat center center;
+            }
+        }
+
+        &-download {
+            &:before {
+                background: url('../img/icons/icon_download.svg') no-repeat center center;
+            }
+        }
+        
+
+
+        &-small {
+            padding: 10px 35px 10px 8px;
+            font-size: 14px;
+
+            &:before {
+                position: absolute;
+                content: '';
+
+                z-index: 1;
+                top: 4px;
+                right: 5px;
+
+                width: 24px;
+                height: 100%;
+                height: 24px;
+                
+                transition: all .6s linear;
+            }
+
+            &:after {
+                position: absolute;
+                content: '';
+                z-index: 0;
+                top: 4px;
+                right: 5px;
+
+                width: 24px;
+                height: 100%;
+                height: 24px;
+
+                border-radius: 14.5px;
+                
+                transition: all .6s ease;
+            }
+
+            &:hover {
+                &:after {
+                    top: 3px;
+                    right: 4px;
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 16.5px;
+                }
+            }
+        }
+
+
+        &-left {
+            padding: 13px 25px 13px 47px;
+
+            @media all and (min-width: 1025px) and (max-width: 1320px) {
+                padding: 13px 18px 13px 47px;
+            }
+
+            &:before {
+                top: 5px;
+                right: auto;
+                left: 5px;
+            }
+
+            &:after {
+                top: 4px;
+                right: auto;
+                left: 5px;
+            }
+
+            &:hover {
+                &:after {
+                    top: 3px;
+                    right: auto;
+                    left: 5px;
+                }
+            }
+
+            &-small {
+                padding: 10px 8px 10px 35px;
+            }
+        }
+    }
+
+    &--orange {
+        background-color: $color_orange;
+        color: #fff;
+
+        &:after {
+            background-color: $color_orange_light;
+        }
+
+        &:hover {
+            background-color: $color_orange_light;
+
+            &:after {
+                background-color: $color_orange;
+            }
+
+            &:before {
+                background-color: $color_orange;
+            }
+        }
+    }
+
+    &--yellow {
+        background-color: $color_yellow;
+        color: #fff;
+
+        &:after {
+            background-color: $color_yellow_light;
+        }
+
+        &:hover {
+            background-color: $color_yellow_light;
+
+            &:after {
+                background-color: $color_yellow;
+            }
+
+            &:before {
+                background-color: $color_yellow;
+            }
+        }
+    }
+
+    &--paleyellow {
+        background-color: $color_yellow_pale;
+        color: #fff;
+
+        &:after {
+            background-color: $color_yellow_strong;
+        }
+
+        &:hover {
+            background-color: $color_yellow_strong;
+
+            &:after {
+                background-color: $color_yellow_pale;
+            }
+
+            &:before {
+                background-color: $color_yellow_pale;
+            }
+        }
+    }
+
+    &--grey {
+        background-color: $color_greybtn;
+        color: #fff;
+
+        &:after {
+            background-color: $color_greybtn_light;
+        }
+
+        &:hover {
+            background-color: $color_greybtn_light;
+
+            &:after {
+                background-color: $color_greybtn;
+            }
+
+            &:before {
+                background-color: $color_greybtn;
+            }
+        }
+    }
+
+    &--lightgrey {
+        background-color: $color_grey1;
+        color: #fff;
+
+        &:after {
+            background-color: $color_grey1_light;
+        }
+
+        &:hover {
+            background-color: $color_grey1_light;
+
+            &:after {
+                background-color: $color_grey1;
+            }
+
+            &:before {
+                background-color: $color_grey1;
+            }
+        }
+    }
+
+    &--verylightgrey {
+        background-color: $color_grey7;
+        color: $color_grey5;
+
+        &:after {
+            background-color: $color_grey7_light;
+        }
+
+        &:hover {
+            background-color: $color_grey7_light;
+            //opacity: .7;
+
+            &:after {
+                background-color: $color_grey7;
+            }
+
+            &:before {
+                background-color: $color_grey4;
+            }
+        }
+    }
+
+    &--red {
+        background-color: $color_red;
+        color: #fff;
+
+        &:after {
+            background-color: $color_red_light;
+        }
+
+        &:hover {
+            background-color: $color_red_light;
+
+            &:after {
+                background-color: $color_red;
+            }
+
+            &:before {
+                background-color: $color_red;
+            }
+        }
+    }
+
+    &--purple {
+        background-color: $color_purple;
+        color: #fff;
+
+        &:after {
+            background-color: $color_purple_light;
+        }
+
+        &:hover {
+            background-color: $color_purple_light;
+
+            &:after {
+                background-color: $color_purple;
+            }
+
+            &:before {
+                background-color: $color_purple;
+            }
+        }
+    }
+
+    &--turquoise {
+        background-color: $color_turquoise;
+        color: #fff;
+
+        &:after {
+            background-color: $color_turquoise_light;
+        }
+
+        &:hover {
+            background-color: $color_turquoise_light;
+
+            &:after {
+                background-color: $color_turquoise;
+            }
+
+            &:before {
+                background-color: $color_turquoise;
+            }
+        }
+    }
+
+    &--green {
+        background-color: $color_green;
+        color: #fff;
+
+        &:after {
+            background-color: $color_green_light;
+        }
+
+        &:hover {
+            background-color: $color_green_light;
+
+            &:after {
+                background-color: $color_green;
+            }
+
+            &:before {
+                background-color: $color_green;
+            }
+        }
+    }
+
+
+    &--entry {
+        padding: 9px 25px;
+
+        &:before {
+            position: absolute;
+            content: '';
+            z-index: 0;
+            top: 5px;
+            right: 7px;
+
+            width: 24px;
+            height: 100%;
+            height: 24px;
+
+            border-radius: 16.5px;
+            
+            transition: all .6s ease;
+
+            @media all and (min-width: 1025px) and (max-width: 1320px) {
+                top: 3px;
+                right: 5px;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 4px;
+            right: 7px;
+            z-index: 1;
+            width: 25px;
+            height: 25px;
+            opacity: 0;
+            transition: opacity .6s ease 0s;
+
+            @media all and (min-width: 1025px) and (max-width: 1320px) {
+                top: 3px;
+                right: 4px;
+            }
+        }
+
+        &:hover {
+            padding-right: 37px;
+
+            &:after {
+                opacity: 1;
+                background-color: transparent;
+                transition: opacity .6s ease .3s;
+            }
+        }
+
+        &-settings {
+
+            &:after {
+                background: url('../img/icons/icon_cog.svg') no-repeat center center transparent;
+            }
+        }
+
+        &-add {
+
+            &:after {
+                background: url('../img/icons/icon_plus_white.svg') no-repeat center center transparent;
+            }
+        }
+
+        &-close {
+
+            &:after {
+                background: url('../img/icons/icon_close.svg') no-repeat center center / 20px auto transparent;
+            }
+        }
+
+        &-show {
+
+            &:after {
+                background: url('../img/icons/icon_show.svg') no-repeat center center / 20px auto transparent;
+            }
+        }
+    }
+
+    &--close {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        text-indent: -9999px;
+        border-radius: 50%;
+        background: url('../img/icons/icon_close.svg') no-repeat center center / 20px auto #bfbfbf;
+
+    }
+
+    &--margin {
+        margin: 4px 0;
+    }
+
+    &__spacer {
+        color: $color_grey4;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 100;
+        padding: 0 .3em;
+    }
+
+    &-edit {
+        img {
+            transition: transform 0.1s ease;
+        }        
+
+        &:hover {
+            img {
+                transform: scale(1.15) rotate(0.02deg);
+            }
+        }
+    }
+}

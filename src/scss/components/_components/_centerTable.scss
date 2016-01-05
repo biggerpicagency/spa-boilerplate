@@ -1,0 +1,13 @@
+// Horizontal and vertical centering
+.centerTable {
+    width: 100%;
+    height: 100%;
+    display: table;
+
+    &__td {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+}

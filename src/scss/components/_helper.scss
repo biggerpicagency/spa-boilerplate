@@ -1,0 +1,149 @@
+
+/*==========  COLORS  ==========*/
+// Color helper classes are next to color definitions in _utils.scss
+
+/*==========  GENERIC  ==========*/
+.clear {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+.text-align-center {text-align: center;}
+.text-align-left {text-align: left;}
+.text-align-right {text-align: right;}
+
+.right {float: right;}
+.left {float: left;}
+
+.nowrap {white-space: nowrap;}
+
+.text--upper {text-transform: uppercase;}
+
+/*==========  MARGINS  ==========*/
+.mt--5em  {margin-top: .5em;}
+.mt--10em {margin-top: 1em;}
+.mt--15em {margin-top: 1.5em;}
+.mt--20em {margin-top: 2em;}
+.mt--25em {margin-top: 2.5em;}
+.mt--30em {margin-top: 3em;}
+.ml--5em {margin-left: .5em;}
+.ml--10em {margin-left: 1em;}
+.ml--15em {margin-left: 1.5em;}
+.ml--20em {margin-left: 2em;}
+.ml--25em {margin-left: 2.5em;}
+.ml--30em {margin-left: 3em;}
+.pt--5em {padding-top: .5em;}
+.pt--10em {padding-top: 1em;}
+.pt--20em {padding-top: 2em;}
+.pt--30em {padding-top: 3em;}
+.pt--30em {padding-top: 4em;}
+.pt--30em {padding-top: 5em;}
+.pr--5em {padding-right: .5em;}
+.pr--10em {padding-right: 1em;}
+.pr--20em {padding-right: 2em;}
+.pr--30em {padding-right: 3em;}
+.pr--40em {padding-right: 4em;}
+.pr--50em {padding-right: 5em;}
+.pb--5em {padding-bottom: .5em;}
+.pb--10em {padding-bottom: 1em;}
+.pb--20em {padding-bottom: 2em;}
+.pb--30em {padding-bottom: 3em;}
+.pb--30em {padding-bottom: 4em;}
+.pb--30em {padding-bottom: 5em;}
+.pl--5em {padding-left: .5em;}
+.pl--10em {padding-left: 1em;}
+.pl--20em {padding-left: 2em;}
+.pl--30em {padding-left: 3em;}
+.pl--30em {padding-left: 4em;}
+.pl--30em {padding-left: 5em;}
+
+
+/*========= RWD HELPERS =========*/
+// @media screen and (min-width: 200px) and (max-width: 568px) {
+//     .hide-on-mobile {
+//         display: none;
+//     }
+// }
+//
+// @media screen and (min-width: 569px) and (max-width: 767px) {
+//     .hide-on-sm,
+//     .hide-on-sm-down {
+//         display: none;
+//     }
+// }
+//
+// @media screen and (min-width: 768px) and (max-width: 1023px) {
+//     .hide-on-md,
+//     .hide-on-md-down {
+//         display: none;
+//     }
+// }
+//
+// @media screen and (min-width: 1025px) and (max-width: 1280px) {
+//     .hide-on-lg,
+//     .hide-on-lg-down {
+//         display: none;
+//     }
+// }
+
+/*========= HIDING =========*/
+
+/*
+ * Hide visually and from screen readers:
+ */
+.hidden {display: none !important;}
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+.invisible {visibility: hidden;}
+
+
+/*========= ANIMATIONS =========*/
+@for $i from 1 through 30 {
+    .delayT--#{$i * 100} {
+        transition-delay: #{$i * 100}ms;
+    }
+}
+@for $i from 1 through 30 {
+    .delayA--#{$i * 100} {
+        animation-delay: #{$i * 100}ms;
+    }
+}

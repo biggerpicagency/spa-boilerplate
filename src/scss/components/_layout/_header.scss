@@ -1,0 +1,90 @@
+$menuRowHeight: 4.4rem;
+$menuTopPosition: 3vh;
+
+$siteHeaderHeight: calc(#{$menuRowHeight} + #{$menuTopPosition}); // can be used globally
+
+.siteLogo {
+    position: absolute;
+    left: 2vw;
+    top: calc(3vh - 0.5rem);
+    z-index: 100;
+    margin: 0;
+
+    h1 {
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        padding: .8rem 1rem;
+    }
+
+    img {
+        display: block;
+        height: $menuRowHeight;
+    }
+}
+
+.siteNav {
+    position: absolute;
+    z-index: 100;
+    right: 2vw;
+    top: $menuTopPosition;
+    font-family: $font_sansSerif;
+
+    a {
+        display: block;
+        padding: 0 1.3rem;
+        line-height: $menuRowHeight;
+        text-transform: uppercase;
+        color: $color_main;
+        font-size: 1rem;
+        letter-spacing: 0.1rem;
+        font-weight: 300;
+
+        &:hover {
+            background-color: $color_gray;
+        }
+
+    }
+
+    &__level1 {
+        display: table;
+        padding-right: .5rem;
+        background-color: $color_white;
+
+            > li {
+                display: table-cell;
+            }
+    }
+
+    &__level2 {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba($color_white, .4);
+
+        li:hover & {
+            display: block;
+        }
+
+        li {
+            display: table-cell;
+        }
+
+        a {
+            background-color: transparent;
+            color: $color_white;
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: $color_main;
+            }
+        }
+
+    }
+
+}

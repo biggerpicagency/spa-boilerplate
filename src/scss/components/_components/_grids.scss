@@ -1,0 +1,736 @@
+/**
+*
+* Grid
+*
+**/
+
+$columns_numbers: (1,2,3,4,5,6,7,8,9,10,11,12);
+$columns_names: xs, sm, md, lg;
+$iteration: (1/12);
+
+$gutters: 0, 10, 20, 30, 40, 50;
+
+$main_container_max_width: 1280;
+$narrow_container_max_width: 800;
+$large_container_max_width: 1400;
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+
+  width: 98%;
+  max-width: ($main_container_max_width)+px;
+}
+
+.container-narrow {
+  @extend .container;
+  max-width: ($narrow_container_max_width)+px;
+}
+
+.container-large {
+  @extend .container;
+  max-width: ($large_container_max_width)+px;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+  overflow-x: hidden;
+}
+
+.container-fluid-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+// Row with default 15px gutter
+$gutter: 15px;
+.row {
+  margin-left: 0;
+  margin-right: 0;
+
+  > [class*="col-"] {
+    padding: 0;
+  }
+}
+
+@each $gutter in $gutters {
+    .row-g-#{$gutter} {
+        margin-left: (-$gutter)+px;
+        margin-right: (-$gutter)+px;
+
+        @media (max-width: 768px) {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        > [class*="col-"] {
+          padding-left: ($gutter)+px;
+          padding-right: ($gutter)+px;
+          padding-bottom: ($gutter)+px;
+
+            @media (max-width: 768px) {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            @media screen and (min-width: 200px) and (max-width: 767px) {
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// border on a row (:after fix is used because when whole website is in one container)
+// border style to change of course or to comment when it is not needed
+
+.container,
+.container--narrow {
+  > .row {
+    &:after {
+      display: block !important;
+      margin-left: $gutter;
+      margin-right: $gutter;
+    }
+  }
+}
+
+@each $gutter in $gutters {
+  .container,
+  .container--narrow {
+    > .row-g-#{$gutter} {
+      &:after {
+        display: block !important;
+        margin-left: ($gutter)+px;
+        margin-right: ($gutter)+px;
+      }
+    }
+  }
+}
+
+
+.row--5cols {
+  > [class$="-7"] {
+    width: 60%;
+    padding-right: 0;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      padding-right: 30px; //depends on row gutter
+    }
+
+    > [class$="-4"] {
+      padding-left: inherit;
+      padding-right: inherit;
+
+      @media (max-width: 767px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &:first-child {
+        margin-left: -30px;  //depends on row gutter
+      }
+    }
+  }
+
+  > [class$="-5"] {
+    width: 40%;
+    padding-left: 0;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      padding-left: 30px; //depends on row gutter
+    }
+
+    > [class$="-6"] {
+      padding-left: inherit;
+      padding-right: inherit;
+
+      @media (max-width: 767px) {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      &:last-child {
+        margin-right: -30px; //depends on row gutter
+      }
+    }
+  }
+}
+
+
+// every column default settings
+%default-col-style {
+  position: relative;
+  min-height: 1px;
+}
+
+//generate class list comma separated with default settings - example: .class-1, .class-2 etc...
+@mixin col-name-number-list {
+  @each $name in $columns_names {
+    @for $i from 1 through length($columns_numbers) {
+      .col-#{$name}-#{$i} { @extend %default-col-style; }
+    }
+    .col-#{$name}-five { @extend %default-col-style; }
+  }
+}
+@include col-name-number-list;
+
+// /////////////////
+//  COL XS STYLE  //
+// /////////////////
+
+// every column float setting
+%default-float-style {
+  float: left;
+}
+
+@mixin col-xs-float-list {
+  @for $j from 1 through length($columns_numbers) {
+    .col-xs-#{$j} { float: left; }
+  }
+  .col-xs-five { float: left; }
+}
+@include col-xs-float-list;
+
+
+@each $number in $columns_numbers {
+  .col-xs-#{$number} {
+      width: percentage($iteration * $number);
+  }
+
+  .col-xs-pull-#{$number} {
+      right: percentage($iteration * $number);
+  }
+
+  .col-xs-push-#{$number} {
+      left: percentage($iteration * $number);
+  }
+
+  .col-xs-offset-#{$number} {
+      margin-left: percentage($iteration * $number);
+  }
+}
+
+.col-xs-pull-0 {
+  right: auto;
+}
+
+.col-xs-push-0 {
+  left: auto;
+}
+
+.col-xs-offset-0 {
+  margin-left: 0%;
+}
+
+.col-xs-five {
+  width: 20%;
+}
+
+.col-xs-pull-five {
+  right: 20%;
+}
+
+.col-xs-push-five {
+  left: 20%;
+}
+
+.col-xs-offset-five {
+  margin-left: 20%;
+}
+
+// /////////////////
+//  COL SM STYLE  //
+// /////////////////
+
+@media (min-width: 768px) {
+
+  @mixin col-sm-float-list {
+    @for $i from 1 through length($columns_numbers) {
+      .col-sm-#{$i} { float: left; }
+    }
+    .col-sm-five { float: left; }
+  }
+
+  @include col-sm-float-list;
+
+  @each $number in $columns_numbers {
+    .col-sm-#{$number} {
+        width: percentage($iteration * $number);
+    }
+
+    .col-sm-pull-#{$number} {
+        right: percentage($iteration * $number);
+    }
+
+    .col-sm-push-#{$number} {
+        left: percentage($iteration * $number);
+    }
+
+    .col-sm-offset-#{$number} {
+        margin-left: percentage($iteration * $number);
+    }
+  }
+
+  .col-sm-pull-0 {
+    right: auto;
+  }
+
+  .col-sm-push-0 {
+    left: auto;
+  }
+
+  .col-sm-offset-0 {
+    margin-left: 0%;
+  }
+
+  .col-sm-five {
+    width: 20%;
+  }
+
+  .col-sm-pull-five {
+    right: 20%;
+  }
+
+  .col-sm-push-five {
+    left: 20%;
+  }
+
+  .col-sm-offset-five {
+    margin-left: 20%;
+  }
+}
+
+// /////////////////
+//  COL MD STYLE  //
+// /////////////////
+
+@media (min-width: 992px) {
+
+  @mixin col-md-float-list {
+    @for $i from 1 through length($columns_numbers) {
+      .col-md-#{$i} { float: left; }
+    }
+    .col-md-five { float: left; }
+  }
+  @include col-md-float-list;
+
+  @each $number in $columns_numbers {
+    .col-md-#{$number} {
+        width: percentage($iteration * $number);
+    }
+
+    .col-md-pull-#{$number} {
+        right: percentage($iteration * $number);
+    }
+
+    .col-md-push-#{$number} {
+        left: percentage($iteration * $number);
+    }
+
+    .col-md-offset-#{$number} {
+        margin-left: percentage($iteration * $number);
+    }
+  }
+
+  .col-md-pull-0 {
+    right: auto;
+  }
+
+  .col-md-push-0 {
+    left: auto;
+  }
+
+  .col-md-offset-0 {
+    margin-left: 0%;
+  }
+
+  .col-md-five {
+    width: 20%;
+  }
+
+  .col-md-pull-five {
+    right: 20%;
+  }
+
+  .col-md-push-five {
+    left: 20%;
+  }
+
+  .col-md-offset-five {
+    margin-left: 20%;
+  }
+}
+
+// /////////////////
+//  COL LG STYLE  //
+// /////////////////
+
+@media (min-width: 1200px) {
+  @mixin col-lg-float-list {
+    @for $i from 1 through length($columns_numbers) {
+      .col-lg-#{$i} { float: left; }
+    }
+    .col-lg-five { float: left; }
+  }
+  @include col-lg-float-list;
+
+  @each $number in $columns_numbers {
+    .col-lg-#{$number} {
+        width: percentage($iteration * $number);
+    }
+
+    .col-lg-pull-#{$number} {
+        right: percentage($iteration * $number);
+    }
+
+    .col-lg-push-#{$number} {
+        left: percentage($iteration * $number);
+    }
+
+    .col-lg-offset-#{$number} {
+        margin-left: percentage($iteration * $number);
+    }
+  }
+
+  .col-lg-pull-0 {
+    right: auto;
+  }
+
+  .col-lg-push-0 {
+    left: auto;
+  }
+
+  .col-lg-offset-0 {
+    margin-left: 0%;
+  }
+
+  .col-lg-five {
+    width: 20%;
+  }
+
+  .col-lg-pull-five {
+    right: 20%;
+  }
+
+  .col-lg-push-five {
+    left: 20%;
+  }
+
+  .col-lg-offset-five {
+    margin-left: 20%;
+  }
+}
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after {
+    content: " ";
+    display: table;
+}
+
+@each $gutter in $gutters {
+  .row-g-#{$gutter}:before,
+  .row-g-#{$gutter}:after {
+    content: " ";
+    display: table;
+  }
+}
+
+
+.clearfix:after,
+.container:after,
+.container-fluid:after,
+.row:after {
+    clear: both;
+}
+
+@each $gutter in $gutters {
+  .row-g-#{$gutter}:after {
+    clear: both;
+  }
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pull-right {
+    float: right !important;
+}
+.pull-left {
+    float: left !important;
+}
+/*
+.hide {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}*/
+.invisible {
+    visibility: hidden;
+}
+.text-hide {
+    font: 0/0 a;
+    color: transparent;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+}
+.hidden {
+    display: none !important;
+    visibility: hidden !important;
+}
+.affix {
+    position: fixed;
+}
+@-ms-viewport {
+    width: device-width;
+}
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg {
+    display: none !important;
+}
+
+.visible-xs-block,
+.visible-xs-inline,
+.visible-xs-inline-block,
+.visible-sm-block,
+.visible-sm-inline,
+.visible-sm-inline-block,
+.visible-md-block,
+.visible-md-inline,
+.visible-md-inline-block,
+.visible-lg-block,
+.visible-lg-inline,
+.visible-lg-inline-block {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .visible-xs {
+        display: block !important;
+    }
+    table.visible-xs {
+        display: table;
+    }
+    tr.visible-xs {
+        display: table-row !important;
+    }
+    th.visible-xs,
+    td.visible-xs {
+        display: table-cell !important;
+    }
+
+    .visible-xs-block {
+        display: block !important;
+    }
+
+    .visible-xs-inline {
+        display: inline !important;
+    }
+
+    .visible-xs-inline-block {
+        display: inline-block !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .visible-sm {
+        display: block !important;
+    }
+    table.visible-sm {
+        display: table;
+    }
+    tr.visible-sm {
+        display: table-row !important;
+    }
+    th.visible-sm,
+    td.visible-sm {
+        display: table-cell !important;
+    }
+
+    .visible-sm-block {
+        display: block !important;
+    }
+
+    .visible-sm-inline {
+        display: inline !important;
+    }
+
+    .visible-sm-inline-block {
+        display: inline-block !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .visible-md {
+        display: block !important;
+    }
+    table.visible-md {
+        display: table;
+    }
+    tr.visible-md {
+        display: table-row !important;
+    }
+    th.visible-md,
+    td.visible-md {
+        display: table-cell !important;
+    }
+
+    .visible-md-block {
+        display: block !important;
+    }
+
+    .visible-md-inline {
+        display: inline !important;
+    }
+
+    .visible-md-inline-block {
+        display: inline-block !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .visible-lg {
+        display: block !important;
+    }
+    table.visible-lg {
+        display: table;
+    }
+    tr.visible-lg {
+        display: table-row !important;
+    }
+    th.visible-lg,
+    td.visible-lg {
+        display: table-cell !important;
+    }
+
+    .visible-lg-block {
+        display: block !important;
+    }
+
+    .visible-lg-inline {
+        display: inline !important;
+    }
+
+    .visible-lg-inline-block {
+        display: inline-block !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+        display: none !important;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hidden-md {
+        display: none !important;
+    }
+}
+@media (min-width: 1200px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+.visible-print {
+    display: none !important;
+}
+@media print {
+    .visible-print {
+        display: block !important;
+    }
+    table.visible-print {
+        display: table;
+    }
+    tr.visible-print {
+        display: table-row !important;
+    }
+    th.visible-print,
+    td.visible-print {
+        display: table-cell !important;
+    }
+}
+.visible-print-block {
+    display: none !important;
+}
+@media print {
+    .visible-print-block {
+        display: block !important;
+    }
+}
+.visible-print-inline {
+    display: none !important;
+}
+@media print {
+    .visible-print-inline {
+        display: inline !important;
+    }
+}
+.visible-print-inline-block {
+    display: none !important;
+}
+@media print {
+    .visible-print-inline-block {
+        display: inline-block !important;
+    }
+}
+@media print {
+    .hidden-print {
+        display: none !important;
+    }
+}
+
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+
+.col-xs-15 {
+  width: 20%;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left;
+  }
+}

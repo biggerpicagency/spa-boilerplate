@@ -1,0 +1,26 @@
+/**
+*
+* Table
+*
+**/
+
+.table {
+    text-align: left;
+
+    td,
+    th {
+        padding: 10px;
+        border: 1px solid $color_grey_light;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: $color_grey_light;
+        color: #666;
+        font-weight: 600;
+    }
+
+    &--full-width {
+        width: 100%;
+    }
+}

@@ -1,0 +1,49 @@
+.pager {
+    padding: 1.5em 2em;
+    border-top: 1px solid #e5e5e5;
+    @include clearfix();
+
+    @media all and (min-width: 1025px) and (max-width: 1320px) {
+        padding: 1em;
+    }
+
+    @media all and (min-width: 200px) and (max-width: 1024px) {
+        padding: .75em 1em;
+    }
+
+    .previous,
+    .next {
+
+        &.disabled {
+            > a {
+                @extend .btn--grey;
+                pointer-events:none;
+                cursor: default;
+            }
+        }
+
+        > a {
+            @extend .btn;
+            @extend .btn--icon;
+            @extend .btn--orange;
+        }
+    }
+
+    .previous {
+        float: left;
+
+        a {
+            @extend .btn--icon-left;
+            @extend .btn--icon-arrow-left;
+        }
+    }
+
+    .next {
+        float: right;
+
+        a {
+            @extend .btn--icon-arrow-right;
+        }
+    }
+
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bigger Picture</title>
+    <base href="/">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://use.typekit.net/nfd0sxp.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+    @@metaNoIndex
+    @@JShead
+</head>
+<body>
+
+    <div class="root" ui-view></div>
+
+    <div class="rwdWarning">Mobile and tablet styles hasn't been added yet</div>
+
+@@JSbody
+</body>
+</html>

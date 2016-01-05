@@ -1,0 +1,106 @@
+//==========  VARIABLES  ==========
+
+// Fonts
+$font_serif: freight-display-pro, serif;
+$font_sansSerif: usual, sans-serif;
+
+// Colors
+$color_main: #000;
+.color--main {color: $color_main;}
+$color_green: #24c5bf;
+.color--green {color: $color_green;}
+$color_green2: #27d9a5;
+.color--green2 {color: $color_green2;}
+$color_blue: #00aeef;
+.color--blue {color: $color_blue;}
+$color_blue2: #33bef2;
+.color--blue2 {color: $color_blue2;}
+$color_white: #fff;
+.color--white {color: $color_white;}
+$color_graphite: #252525;
+.color--graphite {color: $color_graphite;}
+$color_gray: #f7f7f7;
+.color--gray {color: $color_gray;}
+
+
+// Breakepoints
+$breakepoint_mobile: 768px;
+$breakepoint_tablet: 1024px;
+$breakepoint_hdready: 1366px;
+$breakepoint_fullhd: 1920px;
+
+// Animations
+$anim_duration1: 600ms;
+
+//==========  MIXINS  ==========
+
+@mixin mediaquery($query){
+
+    /////////////////////////////////////
+    // NOTE:
+    // To prevent overlapping closed ranges
+    // all 'min' values should be 'breakepoint + 1' (odd)
+    // and all 'max' values should be at 'breakepoint' (even).
+    // Examples of correct ranges: 1025-1920, 1025-1366, 769-1366 (where 'breakepoints' are 768, 1024, 1366, 1920)
+    // Incorrect ranges: 1024 - 1920, 1024-1919, 1025-1919
+
+    ////////////////////// Closed ranges
+
+    // 0 - 767 (exception from the rule above)
+	@if $query == mobile {
+		@media only screen and(max-width: #{$breakepoint_mobile - 1px}) { @content; }
+	}
+
+	// 768 - 1024
+	@else if $query == tablet {
+		@media only screen and(min-width: #{$breakepoint_mobile}) and(max-width: #{$breakepoint_tablet}) { @content; }
+	}
+
+    // 1025 - 1366
+    @else if $query == hdready {
+        @media only screen and(min-width: #{$breakepoint_tablet + 1px}) and(max-width: #{$breakepoint_hdready}) { @content; }
+	}
+
+    // 1367 - 1920
+    @else if $query == fullhd {
+        @media only screen and(min-width: #{$breakepoint_hdready + 1px}) and(max-width: #{$breakepoint_fullhd}) { @content; }
+	}
+
+
+    ////////////////////// Open ranges
+
+
+    // 768 - *
+	@else if $query == gt_mobile {
+		@media only screen and(min-width: #{$breakepoint_mobile}) { @content; }
+	}
+
+    // 1025 - *
+	@else if $query == gt_tablet {
+		@media only screen and(min-width: #{$breakepoint_tablet + 1px}) { @content; }
+	}
+
+    // 1367 - *
+	@else if $query == gt_hdready {
+		@media only screen and(min-width: #{$breakepoint_hdready + 1px}) { @content; }
+	}
+
+    // 1921 - *
+    @else if $query == cinema {
+        @media only screen and(min-width: #{$breakepoint_fullhd + 1px}) { @content; }
+    }
+
+
+    ////////////////////// Other
+
+
+    // Retina
+    @else if $query == retina {
+		@media only screen and (-moz-min-device-pixel-ratio: 1.5),
+		       only screen and (-o-min-device-pixel-ratio: 3/2),
+		       only screen and (-webkit-min-device-pixel-ratio: 1.5),
+		       only screen and (min-device-pixel-ratio: 1.5)
+		       { @content; }
+	}
+
+}

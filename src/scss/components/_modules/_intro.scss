@@ -1,0 +1,188 @@
+.intro {
+    height: 100%;
+    background: url(../img/content/home/bg-stars.png) center center no-repeat, url(../img/content/home/bg-gradient.svg) center center no-repeat;
+    background-size: cover, cover;
+    z-index: 0;
+
+
+    /* Banner */
+    &__banner {
+        text-align: center;
+        width: 100%;
+        /*height: 100%;*/
+        /*position: absolute;*/
+        z-index: 1000000;
+        /*top: 0;
+        left: 0;
+        margin: auto;*/
+
+        position: absolute;
+        top: 32.3%;
+        left: 50%;
+        -webkit-transform: translate3d(-50%,-50%,0);
+                transform: translate3d(-50%,-50%,0);
+
+        will-change: transform;
+
+        -webkit-transition: transform 4s ease;
+        transition: transform 4s ease;
+        z-index: 8;
+
+        * {
+            font-family: "usual";
+            font-weight: 300;
+            color: white;
+        }
+
+        h1 {
+            font-family: "usual";
+            font-weight: 300;
+            font-size: 74px;
+            position: relative;
+            top: 10%;
+            letter-spacing: 13px;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+            text-transform: uppercase;
+        }
+
+
+        p {
+            font-family: "freight-display-pro" !important;
+            font-weight: 300;
+            font-size: 30px;
+            position: relative;
+            top: 8%;
+            letter-spacing: 5px;
+            font-size: 26px;
+            line-height: 31px;
+            text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 300 !important;
+            color: #24c5bf;
+            position: relative;
+            top: 10%;
+            z-index: 5;
+            border: 1px solid #24c5bf;
+            padding: 16px 26px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+
+            overflow: hidden;
+        }
+
+        a:before {
+            content: 'GO!';
+            padding: 16px 0;
+            color: #fff;
+            position: absolute;
+            z-index: 4;
+            top: 100%;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            border-radius: 50%;
+
+            background-color: #24c5bf;
+
+            -webkit-transition: all 0.3s ease;
+
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: rgba(0,0,0,0.5);
+        }
+
+        a:hover:before {
+            top: 0;
+            border-radius: 0%;
+        }
+
+
+        &.out {
+            top: -50%;
+            /*transform: translate3d(-50%,-350%,0);*/
+        }
+    }
+
+    &__stars {
+        bottom: 0;
+        display: block;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0) url(../img/content/home/stars-2.png) no-repeat scroll top center;
+        background-size: cover;
+
+
+        /*-webkit-animation: animStars 100s linear infinite;
+                animation: animStars 100s linear infinite;*/
+
+        -webkit-animation: spin 300s linear infinite;
+                animation: spin 300s linear infinite;
+
+
+       /* transform: translateZ(0px) scale(1, 1) rotate(0.02deg);
+        transition: top 11s ease-out 0s; */
+        z-index:4;
+    }
+
+    &__glob {
+        height: 200vh;
+        width:100%;
+        display:block;
+        position:absolute;
+
+        -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+
+        background: rgba(0, 0, 0, 0) url(../img/content/home/planet.png) no-repeat scroll top center;
+        background-size: cover;
+        margin: 0 auto;
+        left: 0;
+        top:18%;
+
+        /*animation-name: spin-2;
+        animation-duration: 1000000ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;*/
+       /* transform: translateZ(0px) scale(1, 1) rotate(0.02deg);*/
+        -webkit-transition: all 8s ease-out 0s;
+        transition: all 8s ease-out 0s;
+        will-change: transform;
+        z-index:7;
+    }
+
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+}

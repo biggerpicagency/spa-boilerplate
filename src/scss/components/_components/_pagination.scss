@@ -1,0 +1,29 @@
+/**
+*
+* Pagination
+*
+**/
+
+.pagination {
+    clear: both;
+    padding: 1em 0;
+    text-align: center;
+
+    li,
+    a {
+        display: inline-block;
+    }
+
+    a {
+        padding: .3em 1em;
+        border-radius: 5px;
+
+        background: $color_red;
+        color: #fff;
+
+        &.active,
+        &:hover {
+            background: #000;
+        }
+    }
+}

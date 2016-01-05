@@ -1,0 +1,37 @@
+<h1>
+    <a ui-sref="root.home" class="siteLogo_a">
+        <img src="img/bigger-picture-logo.svg" alt="Bigger Picture logo" class="siteLogo__img">
+    </a>
+</h1>
+
+<style>
+    .animationControls {
+        position: fixed;
+        left: 0;
+        top: 0;
+        opacity: 0.1;
+    }
+    .animationControls:hover {
+        opacity: 1;
+    }
+    [ui-view=body]::before {
+        content: "IS OFF";
+        background: #f00;
+        display: inline-block;
+        position: fixed;
+        z-index: 1000;
+        left: 8rem;
+        top: 4px;
+        opacity: .1;
+    }
+    [ui-view=body].active::before {
+        content: "IS ON";
+        background: #0f0;
+    }
+
+
+</style>
+<div class="animationControls">
+    <button id="activeSwitchRemove" onclick="angular.element(document.querySelector('[ui-view=body]')).removeClass('active')">LEAVE</button>
+    <button id="activeSwitchAdd" onclick="angular.element(document.querySelector('[ui-view=body]')).addClass('active')">ENTER</button>
+</div>

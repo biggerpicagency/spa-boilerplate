@@ -1,0 +1,63 @@
+@keyframes blueFlash {
+    from {
+        background-color: rgba($color_blue, 1);
+    }
+    to {
+        background-color: rgba($color_graphite, .9);
+    }
+}
+.blueFlash {
+    animation-name: pulse;
+}
+
+
+@keyframes pulse2 {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        transform: scale3d(1.01, 1.01, 1.01);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+.pulse2 {
+    animation-name: pulse2;
+}
+
+
+@keyframes fadeInFlipIn {
+    from {
+        opacity: 0;
+        animation-timing-function: ease;
+    }
+
+    5% {
+        transform: rotateY(0deg);
+        animation-timing-function: ease;
+    }
+    30% {
+        opacity: 1;
+        animation-timing-function: ease;
+    }
+    to {
+        transform: rotateY(180deg);
+        animation-timing-function: ease;
+    }
+}
+@keyframes flipOutFadeOut {
+    from {
+        transform: rotateY(180deg);
+        animation-timing-function: ease-in;
+    }
+    50% {
+        transform: rotateY(0deg);
+    }
+    60% {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0);
+    }
+}

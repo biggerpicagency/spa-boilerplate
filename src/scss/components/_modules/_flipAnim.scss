@@ -1,0 +1,59 @@
+
+// .flipAnim - module should hold only rotation related styles
+// https://desandro.github.io/3dtransforms/docs/card-flip.html
+.flipAnim {
+    perspective: 800px;
+
+    &__wrapper,
+    &__back,
+    &__front {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__wrapper {
+        backface-visibility: visible;
+        transform-style: preserve-3d;
+        animation-fill-mode: both;
+    }
+
+    &__front,
+    &__back {
+        backface-visibility: hidden;
+    }
+    &__back {
+        transform: rotateY(180deg);
+    }
+    &__front {
+        border: 1px solid $color_blue2;
+        background: $color_blue;
+    }
+}
+
+// Enter animation
+.active .flipAnim {
+    &__wrapper {
+        animation-duration: 1500ms;
+        animation-name: fadeInFlipIn;
+    }
+    &:nth-child(1) .flipAnim__wrapper {animation-delay: 0s;}
+    &:nth-child(2) .flipAnim__wrapper {animation-delay: 50ms;}
+    &:nth-child(3) .flipAnim__wrapper {animation-delay: 100ms;}
+    &:nth-child(4) .flipAnim__wrapper {animation-delay: 150ms;}
+    &:nth-child(5) .flipAnim__wrapper {animation-delay: 200ms;}
+    &:nth-child(6) .flipAnim__wrapper {animation-delay: 250ms;}
+    &:nth-child(7) .flipAnim__wrapper {animation-delay: 300ms;}
+    &:nth-child(8) .flipAnim__wrapper {animation-delay: 400ms;}
+    &:nth-child(9) .flipAnim__wrapper {animation-delay: 450ms;}
+}
+
+// Leave animation
+.flipAnim {
+    &__wrapper {
+        animation-duration: 900ms;
+        animation-name: flipOutFadeOut;
+    }
+}
