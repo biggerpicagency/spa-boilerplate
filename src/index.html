@@ -1,25 +1,38 @@
 <!doctype html>
-<html ng-app="app">
+<html dir="ltr" lang="en" prefix="og: http://ogp.me/ns#" ng-app="app">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bigger Picture</title>
-    <base href="/">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="css/main.css">
-    <script src="https://use.typekit.net/nfd0sxp.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
+    <title>SPA Boilerplate - Bigger Picture</title>
+    <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1.0; maximum-scale=1.0; user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Description here...">
     @@metaNoIndex
+    
+    <base href="/">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" sizes="192x192" href="/img/touch/chrome-touch-icon-192x192.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/touch/apple-touch-icon-precomposed.png">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="green">
+    <meta name="apple-mobile-web-app-title" content="SPA Boilerplate - Bigger Picture">
+    <meta name="msapplication-TileImage" content="/img/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#078490">
+
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SPA Boilerplate - Bigger Picture">
+    <meta property="og:description" content="Description here...">
+    <meta property="og:url" content="http://www.biggerpicture.agency">
+    <meta property="og:site_name" content="Application name">
+    <meta property="og:image" content="/img/touch/chrome-touch-icon-192x192.png">
     @@JShead
 </head>
 <body>
-
     <div class="root" ui-view></div>
 
-    <div class="rwdWarning">Mobile and tablet styles hasn't been added yet</div>
-
-@@JSbody
+    @@JSbody
 </body>
 </html>

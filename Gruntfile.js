@@ -18,24 +18,24 @@
                 envs: {
                     dev: {
                         destDir: 'build', // path relative to Gruntfile.js
-                        apiEndpoint: 'http://api.emailreplypanel.dev/api/v1'
+                        apiEndpoint: 'API_URL_HERE'
                     },
                     local: {
                         destDir: 'build',
-                        apiEndpoint: 'http://api.emailreplypanel.dev/api/v1'
+                        apiEndpoint: 'API_URL_HERE'
                     },
                     staging: {
                         destDir: 'build',
-                        apiEndpoint: 'http://api.emailreply.devstage.co.uk/api/v1'
+                        apiEndpoint: 'API_URL_HERE'
                     },
                     production: {
                         destDir: 'build',
-                        apiEndpoint: 'http://production.api'
+                        apiEndpoint: 'API_URL_HERE'
                     }
                 },
                 scriptsConfigPath: './javascripts.config.json',
                 liveReloadPath: '//localhost:35729/livereload.js',
-                customAssetsToCopy: ['.htaccess']
+                customAssetsToCopy: ['.htaccess', 'humans.txt', 'robots.txt']
             });
 
             // Environment choice is passed through CLI (`grunt --env=production`).
@@ -123,8 +123,8 @@
             // Build lists, append base path
             // Vendor
             scriptsCategorized.vendor = (function() {
-                var fromHead = formatPaths(scriptsConfig.head);
-                var fromBody = formatPaths(scriptsConfig.body);
+                var fromHead = getScripts(scriptsConfig.head);
+                var fromBody = getScripts(scriptsConfig.body);
 
                 return fromHead.concat(fromBody);
             })();
@@ -133,10 +133,10 @@
             scriptsCategorized.compiledTemplates = [compiledTemplates];
 
             // JS code in head section
-            scriptsCategorized.head = formatPaths(scriptsConfig.head);
+            scriptsCategorized.head = getScripts(scriptsConfig.head);
 
             // JS code in body section
-            scriptsCategorized.body = formatPaths(scriptsConfig.body);
+            scriptsCategorized.body = getScripts(scriptsConfig.body);
 
             // Angular config module with constants
             scriptsCategorized.config = {
@@ -152,14 +152,14 @@
             inlineCodeBlocks.bodyJsMin = {type: 'code', value: '<script src="js/main.min.js"></script>'};
 
             // Types should be implicitely given
-            if(!typesFilter.length) {
+            if (!typesFilter.length) {
                 grunt.log.warn('typesFilter in generateListOfJS() is empty. Returning an empty list.');
             }
 
             // Build list of scripts in the order given by filter
             else {
                 typesFilter.forEach(function(type){
-                    if(scriptsCategorized.hasOwnProperty(type)){
+                    if(scriptsCategorized.hasOwnProperty(type)) {
                         outputScripts = outputScripts.concat(scriptsCategorized[type]);
                     }
                     else if(inlineCodeBlocks.hasOwnProperty(type)){
@@ -177,45 +177,39 @@
             function formatOutput(items) {
                 // Convert each item in array to its output format
                 items = items.map(function(item){
-                    if(item.type === 'path'){
-                        return options.returnAsMarkup === true ? '<script src="' + item.value + '"></script>' : item.value;
+                    if (item.type === 'path') {
+                        var src = item.value.substring(0, 3) === 'src' ? item.value.substring(4, item.value.length) : item.value;
+                        return options.returnAsMarkup === true ? '<script src="' + src + '"></script>' : item.value;
                     }
-                    else if(item.type === 'code'){
+                    else if (item.type === 'code'){
                         return item.value;
                     }
+
                     grunt.log.error('formatOutput() failed to parse item: ' + JSON.stringify(item));
                     return '';
                 });
 
                 // Convert array to its output format
-                if(options.returnAsMarkup === true) {
+                if (options.returnAsMarkup === true) {
                     items = items.join('\r\n');
                 }
 
                 return items;
             }
 
-            function formatPaths(files) {
-                var output = [];
-
-                files.map(function(filePath) {
-                    if (filePath.substring(0, 7) === 'vendor/') {
-                        output.push({type: 'path', value: filePath});
-                    }
-                    else {
-                        output.push({type: 'path', value: appScriptsBasePath + filePath});
-                    }
+            function getScripts(files) {
+                var output = files.map(function(filePath) {
+                    return {type: 'path', value: filePath};
                 });
 
                 return output;
             }
-
         }
 
 
-////////////////////////////////////////////////////////////////////////////
-// Tasks definitions
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Tasks definitions
+    ////////////////////////////////////////////////////////////////////////////
 
         // JS linting
         // https://www.npmjs.com/package/grunt-contrib-jshint
@@ -247,10 +241,11 @@
                 configFile: 'karma.conf.js',
                 files: (function getKarmaFilesList() {
                     var karmaFiles = generateListOfJS(['body']);
+
                     // Add angular-mocks.js for Karma directly after angular.js (which should be the first item)
                     karmaFiles.splice(1, 0, ['vendor/angular-mocks/angular-mocks.js']);
+
                     return karmaFiles.concat([
-                            '<%= projectConfig.srcDir %>/js/**/*.tpl.html',
                             '<%= projectConfig.srcDir %>/test/**/*.js'
                         ]);
                 })()
@@ -340,20 +335,27 @@
         grunt.config('replace', {
             dist: {
                 options: {
-                    patterns: [
-                        {
+                    patterns: (function() {
+                        var replacements = [];
+                        var jsHead = generateListOfJS(['head'], {globalBasePath: 'src'});
+
+                        replacements.push({
                             match: 'JShead',
-                            replacement: '<%= JSheadMarkup %>\r\n'
-                        },
-                        {
+                            replacement: jsHead.length > 0 ? '<%= JSheadMarkup %>\r\n' : ''
+                        });
+
+                        replacements.push({
                             match: 'JSbody',
                             replacement: '<%= JSbodyMarkup %>\r\n'
-                        },
-                        {
+                        });
+
+                        replacements.push({
                             match: 'metaNoIndex',
                             replacement: (grunt.config.get('envId') === 'dev' || grunt.config.get('envId') === 'local' || grunt.config.get('envId') === 'staging') ? '<meta name="robots" content="noindex,nofollow">' : ''
-                        }
-                    ]
+                        });
+
+                        return replacements;
+                    })()
                 },
                 files: [{
                     expand: true,
@@ -381,18 +383,17 @@
         grunt.loadNpmTasks('grunt-contrib-uglify');
         grunt.config('uglify', {
             options: {
-                mangle: {except: ['angular']},
-                preserveComments: 'some', // licence banners must be preserved
+                mangle: {
+                    except: ['angular']
+                },
                 screwIE8: true,
                 sourceMap: true
             },
             jsHead: {
-                // src: ['<%= projectConfig.srcDir %>/js/**/*.js'],
                 src: generateListOfJS(['head'], {globalBasePath: 'src'}),
                 dest: '<%= currEnvConfig.destDir %>/js/initial.min.js'
             },
             jsBody: {
-                // src: ['<%= projectConfig.srcDir %>/js/**/*.js'],
                 src: generateListOfJS(['body', 'compiledTemplates', 'config'], {globalBasePath: 'src'}),
                 dest: '<%= currEnvConfig.destDir %>/js/main.min.js'
             }
@@ -527,13 +528,13 @@
                 tasks: (function(){
                     if(grunt.config.get('envId') === 'dev'){
                         return [
-                            'newer:jshint:app', 'newer:karma:unit',
+                            'newer:jshint:app', 'karma:unit:run',
                             'copy:js'
                         ];
                     }
                     else {
                         return [
-                            'newer:jshint:app', 'newer:karma:unit',
+                            'newer:jshint:app', 'karma:unit:run',
                             'html2js',
                             'uglify',
                             'clean:destTemp'
@@ -565,8 +566,8 @@
                 }
             },
             unittests: {
-                files: ['<%= projectConfig.srcDir %>/test/*.js'],
-                tasks: ['newer:jshint:unittests', 'newer:karma:unit'],
+                files: ['<%= projectConfig.srcDir %>/test/**/*.js'],
+                tasks: ['newer:jshint:unittests', 'karma:unit:run'],
                 options: {
                     event: ['changed', 'added']
                 }
@@ -610,9 +611,9 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////
-// Custom Tasks definitions
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Custom Tasks definitions
+    ////////////////////////////////////////////////////////////////////////////
 
         // Displaying log message.
         // Although watch sees changes in Gruntfile.js and runs jshint the new config is not automatically applied.
@@ -636,22 +637,6 @@
             grunt.log.subhead('===============================================================================\nRunning watch:' + target);
         });
 
-        // Fixes watcher which doesn't see newly added directories
-        /* Needs to be fixed
-        grunt.event.on('watch', function(action, path) {
-            var folder = path.substring(0, 6).replace(/\\/g,"/"); // JT:why 6?
-            var isFolder = (path.slice(-3) !== '.js' && path.slice(-5) !== '.html' && (folder === grunt.config.get('srcDir') + '/js' || folder === grunt.config.get('srcDir') + '/te')) ? true : false;
-
-            if(isFolder) {
-                grunt.file.write(path + '/initial.js', '');
-                grunt.file.write(grunt.config.get('srcDir') + '/js/app.js', grunt.file.read(grunt.config.get('srcDir') + '/js/app.js'));
-            }
-            else {
-                grunt.task.run(['clean:initialFiles']);
-            }
-        });
-        */
-
         // When no CLI options are passed, the 'build' action is called
         grunt.registerTask('default', function () {
             grunt.task.run('build');
@@ -667,7 +652,7 @@
 
             if(grunt.config.get('envId') === 'dev') {
                 tasks = [
-                    'jshint', 'karma:unit', // initial validation
+                    'jshint', 'karma', // initial validation
                     'clean:all', // Deleting old content in dest directory
                     'sass:dev', 'autoprefixer', // CSS processing
                     'replace', // Replacing @@ tags in .html files (embedding JS scripts etc.)
@@ -680,7 +665,7 @@
             }
             else if(grunt.config.get('envId') === 'local' || grunt.config.get('envId') === 'staging' || grunt.config.get('envId') === 'production') {
                 tasks = [
-                    'jshint', 'karma:unit', // initial validation
+                    'jshint', 'karma', // initial validation
                     'clean:all', // Deleting old content in dest directory
                     'sass:nondev', 'autoprefixer', // CSS processing
                     'replace', // Replacing @@ tags in .html files
@@ -698,8 +683,8 @@
         // Creating new HTML templates in new folders was not watched by Grunt
         // Following code will create initial template as far as new folder is created
         grunt.event.on('watch', function(action, path) {
-            var folder = path.substring(0, 6).replace(/\\/g,"/");
-            var isFolderInTemplates = (path.slice(-3) !== '.js' && path.slice(-5) !== '.html' && folder === grunt.config.get('projectConfig').srcDir + '/te') ? true : false;
+            var folder = path.substring(0, 7).replace(/\\/g,"/");
+            var isFolderInTemplates = (path.slice(-3) !== '.js' && path.slice(-5) !== '.html' && folder === grunt.config.get('projectConfig').srcDir + '/tem') ? true : false;
 
             if (isFolderInTemplates) {
                 grunt.file.write(path + '/initial.tpl.html', '');

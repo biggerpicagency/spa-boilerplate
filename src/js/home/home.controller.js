@@ -1,23 +1,12 @@
-;(function(){
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.home')
-        .controller('HomeController', HomeController);
+angular
+    .module('Home')
+    .controller('HomeController', HomeController);
 
-    HomeController.$inject = [];
+HomeController.$inject = [];
 
-    function HomeController(){
-        //var HomeVm = this;
-
-        // Attaching injected dependencies to the instance
-        // HomeVm.$timeout = $timeout;
-
-        // Attaching data fetched in router
-        // HomeVm.assetsCategories = assetsCategories;
-
-    }
-
-    // HomeController.prototype.foo = function(){};
-
-})();
+function HomeController(){
+    var home = this;
+    home.message = 'Welcome';
+}

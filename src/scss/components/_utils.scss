@@ -1,33 +1,14 @@
 //==========  VARIABLES  ==========
 
-// Fonts
-$font_serif: freight-display-pro, serif;
-$font_sansSerif: usual, sans-serif;
-
 // Colors
-$color_main: #000;
-.color--main {color: $color_main;}
-$color_green: #24c5bf;
-.color--green {color: $color_green;}
-$color_green2: #27d9a5;
-.color--green2 {color: $color_green2;}
-$color_blue: #00aeef;
-.color--blue {color: $color_blue;}
-$color_blue2: #33bef2;
-.color--blue2 {color: $color_blue2;}
-$color_white: #fff;
-.color--white {color: $color_white;}
-$color_graphite: #252525;
-.color--graphite {color: $color_graphite;}
-$color_gray: #f7f7f7;
-.color--gray {color: $color_gray;}
-
+$colorMain: #222;
+.color-main {color: $colorMain;}
 
 // Breakepoints
-$breakepoint_mobile: 768px;
-$breakepoint_tablet: 1024px;
-$breakepoint_hdready: 1366px;
-$breakepoint_fullhd: 1920px;
+$breakpointMobile: 768px;
+$breakpointTablet: 1024px;
+$breakpointHDready: 1366px;
+$breakpointFullHD: 1920px;
 
 // Animations
 $anim_duration1: 600ms;
@@ -48,51 +29,48 @@ $anim_duration1: 600ms;
 
     // 0 - 767 (exception from the rule above)
 	@if $query == mobile {
-		@media only screen and(max-width: #{$breakepoint_mobile - 1px}) { @content; }
+		@media only screen and(max-width: #{$breakpointMobile - 1px}) { @content; }
 	}
 
 	// 768 - 1024
 	@else if $query == tablet {
-		@media only screen and(min-width: #{$breakepoint_mobile}) and(max-width: #{$breakepoint_tablet}) { @content; }
+		@media only screen and(min-width: #{$breakpointMobile}) and(max-width: #{$breakpointTablet}) { @content; }
 	}
 
     // 1025 - 1366
     @else if $query == hdready {
-        @media only screen and(min-width: #{$breakepoint_tablet + 1px}) and(max-width: #{$breakepoint_hdready}) { @content; }
+        @media only screen and(min-width: #{$breakpointTablet + 1px}) and(max-width: #{$breakpointHDready}) { @content; }
 	}
 
     // 1367 - 1920
     @else if $query == fullhd {
-        @media only screen and(min-width: #{$breakepoint_hdready + 1px}) and(max-width: #{$breakepoint_fullhd}) { @content; }
+        @media only screen and(min-width: #{$breakpointHDready + 1px}) and(max-width: #{$breakpointFullHD}) { @content; }
 	}
 
 
     ////////////////////// Open ranges
 
-
     // 768 - *
 	@else if $query == gt_mobile {
-		@media only screen and(min-width: #{$breakepoint_mobile}) { @content; }
+		@media only screen and(min-width: #{$breakpointMobile}) { @content; }
 	}
 
     // 1025 - *
 	@else if $query == gt_tablet {
-		@media only screen and(min-width: #{$breakepoint_tablet + 1px}) { @content; }
+		@media only screen and(min-width: #{$breakpointTablet + 1px}) { @content; }
 	}
 
     // 1367 - *
 	@else if $query == gt_hdready {
-		@media only screen and(min-width: #{$breakepoint_hdready + 1px}) { @content; }
+		@media only screen and(min-width: #{$breakpointHDready + 1px}) { @content; }
 	}
 
     // 1921 - *
     @else if $query == cinema {
-        @media only screen and(min-width: #{$breakepoint_fullhd + 1px}) { @content; }
+        @media only screen and(min-width: #{$breakpointFullHD + 1px}) { @content; }
     }
 
-
     ////////////////////// Other
-
 
     // Retina
     @else if $query == retina {

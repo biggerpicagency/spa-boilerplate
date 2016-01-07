@@ -9,54 +9,14 @@
 @import '_base/_global';
 
 // Layout
-//@import '_components/_some-layout-partial';
-@import '_layout/_header';
-@import '_layout/_view';
-// @import '_layout/_burger';
+@import '_layout/_navbar';
+@import '_layout/_main';
 
 // Components (you can replace the below ones to bootstrap or other framework's files just with components)
 @import '_components/_headline';
-@import '_components/_centerTable';
 
 // Modules
 // @import '_modules/_some-module';
-@import '_modules/_animate.scss';
-@import '_modules/_animateCustom.scss';
-@import '_modules/_col.scss';
-@import '_modules/_intro.scss';
-@import '_modules/_tileBoxes.scss';
-@import '_modules/_squareBoxes.scss';
-@import '_modules/_tilesGrid.scss';
-@import '_modules/_breadcrumbs.scss';
-@import '_modules/_fullHero.scss';
-@import '_modules/_wideHero.scss';
-@import '_modules/_flipAnim.scss';
-
-// Views
-@import '_views/_services';
-@import '_views/_services_strategy';
-@import '_views/_insights';
-@import '_views/_work';
-
 
 // Make sure this is last to override anything else :)
 @import '_helper';
-
-.rwdWarning {
-    display: none;
-    @media only screen and(max-width: 1024px) {
-        display: block;
-        position: fixed;
-        z-index: 100;
-        top: 1rem;
-        left: 50%;
-        width: 40rem;
-        margin-left: -20rem;
-        text-align: center;
-        color: #fff;
-        background: #f00;
-        font-weight: 700;
-        font-size: 1.5rem;
-        font-family: $font_sansSerif;
-    }
-}

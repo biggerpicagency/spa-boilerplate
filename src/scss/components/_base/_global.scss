@@ -1,14 +1,12 @@
-/**
-*
-* Global
-*
-**/
+/*==========  GLOBAL STYLES  ==========*/
 
 html {
     box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*, 
+*:before, 
+*:after {
     box-sizing: inherit;
 }
 
@@ -21,15 +19,15 @@ button {
 }
 
 html {
-    background-color: #fff;
+    background-color: #ededed;
 }
 
 body {
-    font-family: $font_serif;
+    font-family: Arial, sans-serif;
     font-size: 100%;
     line-height: 1.5;
-    font-weight: 400;
-    color: $color_main;
+    font-weight: 300;
+    color: $colorMain;
 }
 
 ul, li {

@@ -1,22 +1,20 @@
-;(function(){
-    'use strict';
+'use strict';
 
-    angular
-        .module('app.home', ['templates-dist'])
-        .config(homeConfig);
+angular
+    .module('Home', ['templates-dist'])
+    .config(homeConfig);
 
-    homeConfig.$inject = ['$stateProvider'];
+homeConfig.$inject = ['$stateProvider'];
 
-    function homeConfig($stateProvider) {
-        $stateProvider
-            .state('root.home', {
-                url: '/',
-                views: {
-                    'body@root': {
-                        templateUrl: 'templates/home/home.tpl.html'
-                    }
+function homeConfig($stateProvider) {
+    $stateProvider
+        .state('root.home', {
+            url: '/home',
+            views: {
+                'body@root': {
+                    controller: 'HomeController as home',
+                    templateUrl: 'templates/home/home.tpl.html'
                 }
-            });
-    }
-
-})();
+            }
+        });
+}

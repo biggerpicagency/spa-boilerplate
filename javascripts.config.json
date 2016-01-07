@@ -1,20 +1,10 @@
 {
-    "head": [
-        "js/modernizr-custom.js"
-    ],
+    "head": [],
     "body": [
         "vendor/angular/angular.min.js",
-        "vendor/angular-animate/angular-animate.min.js",
         "vendor/angular-ui-router/release/angular-ui-router.min.js",
-        "js/animations.js",
-        "js/home/home.config.js",
-        "js/home/home.controller.js",
-        "js/services/services.config.js",
-        "js/services/services.controller.js",
-        "js/work/work.config.js",
-        "js/work/work.controller.js",
-        "js/insights/insights.config.js",
-        "js/insights/insights.controller.js",
-        "js/app.js"
+        "src/js/home/home.config.js",
+        "src/js/home/home.controller.js",
+        "src/js/app.js"
     ]
 }
