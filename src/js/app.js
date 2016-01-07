@@ -13,7 +13,7 @@ angular
 appConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 function appConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/home');
 
     // UI router main config
     $stateProvider
