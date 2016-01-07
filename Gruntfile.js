@@ -12,31 +12,7 @@
             // Values are accessible through:
             // - Grunt templates, eg: '<%= projectConfig.liveReloadPath %>'
             // - Grunt API, eg: grunt.config.get('projectConfig').liveReloadPath
-            grunt.config.set('projectConfig', {
-                srcDir: 'src', // path relative to Gruntfile.js
-                tempDir: 'temp',  // path relative to destDir
-                envs: {
-                    dev: {
-                        destDir: 'build', // path relative to Gruntfile.js
-                        apiEndpoint: 'API_URL_HERE'
-                    },
-                    local: {
-                        destDir: 'build',
-                        apiEndpoint: 'API_URL_HERE'
-                    },
-                    staging: {
-                        destDir: 'build',
-                        apiEndpoint: 'API_URL_HERE'
-                    },
-                    production: {
-                        destDir: 'build',
-                        apiEndpoint: 'API_URL_HERE'
-                    }
-                },
-                scriptsConfigPath: './javascripts.config.json',
-                liveReloadPath: '//localhost:35729/livereload.js',
-                customAssetsToCopy: ['.htaccess', 'humans.txt', 'robots.txt']
-            });
+            grunt.config.set('projectConfig', grunt.file.readJSON('./app.config.json'));
 
             // Environment choice is passed through CLI (`grunt --env=production`).
             // Default environment is 'dev', which should be the first of definied environments

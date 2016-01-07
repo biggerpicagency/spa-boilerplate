@@ -1,0 +1,25 @@
+{
+    "srcDir": "src",
+    "tempDir": "temp",
+    "envs": {
+        "dev": {
+            "destDir": "build",
+            "apiEndpoint": "API_URL_HERE"
+        },
+        "local": {
+            "destDir": "build",
+            "apiEndpoint": "API_URL_HERE"
+        },
+        "staging": {
+            "destDir": "build",
+            "apiEndpoint": "API_URL_HERE"
+        },
+        "production": {
+            "destDir": "build",
+            "apiEndpoint": "API_URL_HERE"
+        }
+    },
+    "scriptsConfigPath": "./javascripts.config.json",
+    "liveReloadPath": "//localhost:35729/livereload.js",
+    "customAssetsToCopy": [".htaccess", "humans.txt", "robots.txt"]
+}
