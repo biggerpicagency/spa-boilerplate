@@ -58,7 +58,8 @@ boilerplate-spa/
 * saving HTML, JS does not take too much time like in ngBoilerplate (while developing we load real HTML templates and we do not use compiled HTML views by html2js every time - this is done only while ```grunt build --env=ENV``` command)
 * Sass support - sorry, in our honest opinion Sass is better than Less and gives more advantages :-)
 * new files created in newly created directories are not being watched by Grunt task runner in ngBoilerplate - we have elliminated this issue
-* our boilerplate imposes [John Papa's styleguide](https://github.com/johnpapa/angular-styleguide) in Angular code
+* our boilerplate imposes [John Papa's styleguide](https://github.com/johnpapa/angular-styleguide) in Angular code - it allows to create a concistent code by any developer
+* you can easily inject JS files not only to ```body``` area, but also into ```head``` by **javascripts.config.js**
 * you can build production ready app in different environments
 
 As a default, we added to the repository necessary files like robots.txt, basic icons in different icons (thanks to Web Starter Kit) and Web Server Config in .htaccess to reach the highest performance (gzip, caching etc.).
