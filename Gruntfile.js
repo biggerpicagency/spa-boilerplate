@@ -251,8 +251,8 @@
                 })()
             },
             unit: {
-                background: true,
-                singleRun: false
+                port: 9019,
+                background: true
             },
             continuous: {
                 singleRun: true
