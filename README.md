@@ -5,7 +5,7 @@ An opinionated starting point for Single Page Applications, used by [Bigger Pict
 This boilerplate is a first step to start building an excellent Single Page Application based on Angular. It contains necessary build processes, basic styles and files that every website needs to have.
 With a think of application's high performance and the [Page Speed Insights score](https://developers.google.com/speed/pagespeed/insights/), we tried to create a boilerplate that builds extremely minified and compressed code and images, using the best technologies used by Bigger Picture Team.
 
-It takes its inspiration in [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [ngBoilerplate](https://github.com/ngbp/ngbp) and [https://html5boilerplate.com/](HTML5 boilerplate) but it eliminates all their weaknesses.
+It takes its inspiration in [Web Starter Kit](https://developers.google.com/web/tools/starter-kit/), [ngBoilerplate](https://github.com/ngbp/ngbp) and [HTML5 boilerplate](https://html5boilerplate.com) but it eliminates all their weaknesses.
 
 ## Features
 * **Sass** (SCSS syntax) compilation to pure, minified CSS (by node-sass)
