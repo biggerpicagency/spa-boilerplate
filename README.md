@@ -33,8 +33,8 @@ If you want to preview production ready application on your local environment, u
 * ```grunt build --env=local```
 
 #### Build production ready code
-* ```grunt build --env=staging``` - creates production application for staging purposes
-* ```grunt build --env=production``` - creates production application for staging purposes
+* ```grunt build --env=staging``` - creates build application for staging purposes
+* ```grunt build --env=production``` - creates build application for production purposes
 
 Every build contains concatenated environment's variables set in ```app.config.js``` file.
 
