@@ -51,7 +51,7 @@ boilerplate-spa/
   |   - index.html
   |- vendor/ (Third-party libraries, installed by Bower)
   |- app.config.json (contains a JSON object with settings about directories & custom environment variables)
-  |- javascripts.config.js (contains a JSON object with a list of all JS files used in app (needs to be edited manually))
+  |- javascripts.config.json (contains a JSON object with a list of all JS files used in app (needs to be edited manually))
 ```
 
 ## The Bigger Picture SPA Boilerplate Rules!
@@ -59,7 +59,7 @@ boilerplate-spa/
 * Sass support - sorry is you are a Less fan, but we think Sass is the way right now
 * new files created in newly created directories are not being watched by Grunt task runner in ngBoilerplate - we have elliminated this issue
 * our boilerplate imposes [John Papa's styleguide](https://github.com/johnpapa/angular-styleguide) in Angular code - it allows you to create consistent code, especially handy when multiple developers are working on the same project
-* you can easily inject JS files not only to ```body``` area, but also into ```head``` by **javascripts.config.js**
+* you can easily inject JS files not only to ```body``` area, but also into ```head``` by **javascripts.config.json**
 * you can build production ready app in different environments
 
 By default we've added necessary files like robots.txt, basic icons (thanks to Web Starter Kit), and Web Server Config in .htaccess to reach the highest performance (gzip, caching etc.).
