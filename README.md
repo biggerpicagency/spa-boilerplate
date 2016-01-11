@@ -50,7 +50,7 @@ boilerplate-spa/
   |  |- test/
   |   - index.html
   |- vendor/ (Third-party libraries, installed by Bower)
-  |- app.config.js (contains a JSON object with settings about directories & custom environment variables)
+  |- app.config.json (contains a JSON object with settings about directories & custom environment variables)
   |- javascripts.config.js (contains a JSON object with a list of all JS files used in app (needs to be edited manually))
 ```
 
