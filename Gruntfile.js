@@ -99,8 +99,8 @@
             // Build lists, append base path
             // Vendor
             scriptsCategorized.vendor = (function() {
-                var fromHead = getScripts(scriptsConfig.head);
-                var fromBody = getScripts(scriptsConfig.body);
+                var fromHead = getScripts(scriptsConfig.head, true);
+                var fromBody = getScripts(scriptsConfig.body, true);
 
                 return fromHead.concat(fromBody);
             })();
@@ -173,15 +173,30 @@
                 return items;
             }
 
-            function getScripts(files) {
-                var output = files.map(function(filePath) {
-                    return {type: 'path', value: filePath};
-                });
+            function getScripts(files, vendorOnly) {
+                var output = [];
+
+                if (vendorOnly) {
+                    files.map(function(filePath) {
+                        if (filePath.substring(0, 7) === 'vendor/') {
+                            output.push({
+                                type: 'path', 
+                                value: filePath 
+                            });
+                        }
+                    });
+                } else {
+                    files.map(function(filePath) {
+                        output.push({
+                            type: 'path', 
+                            value: filePath
+                        });
+                    });
+                }
 
                 return output;
             }
         }
-
 
     ////////////////////////////////////////////////////////////////////////////
     // Tasks definitions
