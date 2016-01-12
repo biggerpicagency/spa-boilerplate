@@ -56,8 +56,8 @@ boilerplate-spa/
 
 ## The Bigger Picture SPA Boilerplate Rules!
 * it's the quickest thing around for saving your HTML & JS: whilst your developing we load real HTML templates and we do not use compiled HTML views by html2js every time - this is done only while ```grunt build --env=ENV``` command)
-* Sass support - sorry is you are a Less fan, but we think Sass is the way right now
-* new files created in newly created directories are not being watched by Grunt task runner in ngBoilerplate - we have elliminated this issue
+* Sass support - sorry if you are a Less fan, but we think Sass is the way right now
+* new files in new directories ARE watched by Grunt task runner - we think this is a massive BUG FIX
 * our boilerplate imposes [John Papa's styleguide](https://github.com/johnpapa/angular-styleguide) in Angular code - it allows you to create consistent code, especially handy when multiple developers are working on the same project
 * you can easily inject JS files not only to ```body``` area, but also into ```head``` by **javascripts.config.json**
 * you can build production ready app in different environments
